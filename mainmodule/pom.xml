@@ -6,7 +6,7 @@
 	<groupId>airlinereservation</groupId>
 	<artifactId>airlinereservation</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>pom</packaging>
 
 	<name>airlinereservation</name>
 	<description>Airline Reservation System</description>
