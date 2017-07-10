@@ -24,8 +24,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Table(name="flightDetails",uniqueConstraints = { @UniqueConstraint(columnNames = { "flightId", "flightDepartureDate" }) })
 public class FlightDetails implements Serializable{
 	
-		/*@EmbeddedId
-		private FlightDetailsId flightDetailsId;*/
 		@Id
 		@Column(name="flightDepartureDate")
 		private Date flightDepartureDate;
@@ -34,42 +32,38 @@ public class FlightDetails implements Serializable{
 	    
 	   @Id
 	    @ManyToOne
-	    //@JoinColumns(value = { @JoinColumn(name = "flightId")})
 	    @JoinColumn(name="flightId")
 	    @JsonBackReference
 	    private Flight flight;
 	    
 	 
-	    
-	    /*@OneToMany(mappedBy = "flightDetails", cascade = CascadeType.ALL)
-	    @JsonManagedReference
-	    private List<TicketInfo> ticketInfo;*/
-
+	
 	    public FlightDetails() {
 			super();
 		}
 
-		/*public FlightDetailsId getFlightDetailsId() {
-			return flightDetailsId;
-		}
-
-		public void setFlightDetailsId(FlightDetailsId flightDetailsId) {
-			this.flightDetailsId = flightDetailsId;
-		}*/
-/*
-		public List<TicketInfo> getTicketInfo() {
-			return ticketInfo;
-		}
-
-		public void setTicketInfo(List<TicketInfo> ticketInfo) {
-			this.ticketInfo = ticketInfo;
-		}*/
 
 		public Double getPrice() {
 	        return price;
 	    }
 
-	    public void setPrice(Double price) {
+	    public Date getFlightDepartureDate() {
+			return flightDepartureDate;
+		}
+
+		public void setFlightDepartureDate(Date flightDepartureDate) {
+			this.flightDepartureDate = flightDepartureDate;
+		}
+
+		public Flight getFlight() {
+			return flight;
+		}
+
+		public void setFlight(Flight flight) {
+			this.flight = flight;
+		}
+
+		public void setPrice(Double price) {
 	        this.price = price;
 	    }
 
