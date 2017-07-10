@@ -14,18 +14,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
-@Entity // This tells Hibernate to make a table out of this class
+@Entity 
 @Component
-@Table(name="passengerprofile")
 public class PassengerProfile implements Serializable {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)   
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="profileId")
     private Integer profileId;
    
     private String password;
@@ -40,9 +39,9 @@ public class PassengerProfile implements Serializable {
       
     private String emailId;
     
-    /*@OneToMany(mappedBy = "passengerProfile", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "passengerProfile", cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<TicketInfo> ticketInfo;*/
+    private List<TicketInfo> ticketInfo;
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "passengerProfile", cascade = CascadeType.ALL)
 	private CreditCardDetails creditCardDetails;
@@ -63,7 +62,15 @@ public class PassengerProfile implements Serializable {
 		this.emailId = emailId;
 	}
     
-    public CreditCardDetails getCreditCardDetails() {
+    public List<TicketInfo> getTicketInfo() {
+		return ticketInfo;
+	}
+
+	public void setTicketInfo(List<TicketInfo> ticketInfo) {
+		this.ticketInfo = ticketInfo;
+	}
+
+	public CreditCardDetails getCreditCardDetails() {
 		return creditCardDetails;
 	}
 

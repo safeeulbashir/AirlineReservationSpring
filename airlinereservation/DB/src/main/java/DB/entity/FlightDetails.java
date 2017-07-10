@@ -23,7 +23,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Component
 @Table(name="flightDetails",uniqueConstraints = { @UniqueConstraint(columnNames = { "flightId", "flightDepartureDate" }) })
 public class FlightDetails implements Serializable{
-	
 		@Id
 		@Column(name="flightDepartureDate")
 		private Date flightDepartureDate;
@@ -37,9 +36,43 @@ public class FlightDetails implements Serializable{
 	    private Flight flight;
 	    
 	 
-	
+	    
+	    @OneToMany(mappedBy = "flightDetails", cascade = CascadeType.ALL)
+	    @JsonManagedReference
+	    private List<TicketInfo> ticketInfo;
+
 	    public FlightDetails() {
 			super();
+		}
+	    
+
+		public Date getFlightDepartureDate() {
+			return flightDepartureDate;
+		}
+
+
+		public void setFlightDepartureDate(Date flightDepartureDate) {
+			this.flightDepartureDate = flightDepartureDate;
+		}
+
+
+		public Flight getFlight() {
+			return flight;
+		}
+
+
+		public void setFlight(Flight flight) {
+			this.flight = flight;
+		}
+
+
+		public List<TicketInfo> getTicketInfo() {
+			return ticketInfo;
+		}
+
+
+		public void setTicketInfo(List<TicketInfo> ticketInfo) {
+			this.ticketInfo = ticketInfo;
 		}
 
 
@@ -47,23 +80,7 @@ public class FlightDetails implements Serializable{
 	        return price;
 	    }
 
-	    public Date getFlightDepartureDate() {
-			return flightDepartureDate;
-		}
-
-		public void setFlightDepartureDate(Date flightDepartureDate) {
-			this.flightDepartureDate = flightDepartureDate;
-		}
-
-		public Flight getFlight() {
-			return flight;
-		}
-
-		public void setFlight(Flight flight) {
-			this.flight = flight;
-		}
-
-		public void setPrice(Double price) {
+	    public void setPrice(Double price) {
 	        this.price = price;
 	    }
 

@@ -21,7 +21,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Flight implements Serializable{
 	 	@Id
 	    @GeneratedValue(strategy = GenerationType.AUTO)
-	 	
 	    private Integer flightId;
 	 	
 	    private Integer airlineId;
