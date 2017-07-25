@@ -1,22 +1,10 @@
 package DB.entity;
 
-import java.io.Serializable;
-import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Component
@@ -34,9 +22,9 @@ public class TicketInfo implements Serializable{
 
 	private String status;
 	
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumns({@JoinColumn(name="flightDepartureDate"),@JoinColumn(name="flightId")})
-	private FlightDetails flightDetails;
+	private FlightDetails flightDetails;*/
 	
 	public TicketInfo() {
 		super();
@@ -53,7 +41,7 @@ public class TicketInfo implements Serializable{
 	}
 
 
-	public FlightDetails getFlightDetails() {
+	/*public FlightDetails getFlightDetails() {
 		return flightDetails;
 	}
 
@@ -61,7 +49,7 @@ public class TicketInfo implements Serializable{
 	public void setFlightDetails(FlightDetails flightDetails) {
 		this.flightDetails = flightDetails;
 	}
-
+*/
 
 	public int getTicketId() {
 		return ticketId;

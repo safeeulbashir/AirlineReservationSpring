@@ -1,23 +1,10 @@
 package DB.entity;
 
-import java.io.Serializable;
-import java.sql.Date;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.sql.Date;
 
 @Entity
 @Component
@@ -26,20 +13,24 @@ public class FlightDetails implements Serializable{
 		@Id
 		@Column(name="flightDepartureDate")
 		private Date flightDepartureDate;
-	    private Double price;
-	    private Integer availableSeats;
-	    
-	   @Id
-	    @ManyToOne
-	    @JoinColumn(name="flightId")
-	    @JsonBackReference
-	    private Flight flight;
-	    
-	 
-	    
-	    @OneToMany(mappedBy = "flightDetails", cascade = CascadeType.ALL)
-	    @JsonManagedReference
-	    private List<TicketInfo> ticketInfo;
+		private Double price;
+		private Integer availableSeats;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "flightId", nullable = false)
+		private Flight flight;
+	/*@OneToMany(mappedBy = "flightDetails", cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private List<TicketInfo> ticketInfo;*/
+
+
+	public FlightDetails(Date flightDepartureDate, Double price, Integer availableSeats, Flight flight) {
+		this.flightDepartureDate = flightDepartureDate;
+		this.price = price;
+		this.availableSeats = availableSeats;
+		this.flight=flight;
+	}
+
 
 	    public FlightDetails() {
 			super();
@@ -60,20 +51,25 @@ public class FlightDetails implements Serializable{
 			return flight;
 		}
 
+	public FlightDetails(Date flightDepartureDate, Double price, Integer availableSeats) {
+		this.flightDepartureDate = flightDepartureDate;
+		this.price = price;
+		this.availableSeats = availableSeats;
+	}
 
-		public void setFlight(Flight flight) {
+	public void setFlight(Flight flight) {
 			this.flight = flight;
 		}
 
 
-		public List<TicketInfo> getTicketInfo() {
+		/*public List<TicketInfo> getTicketInfo() {
 			return ticketInfo;
 		}
 
 
 		public void setTicketInfo(List<TicketInfo> ticketInfo) {
 			this.ticketInfo = ticketInfo;
-		}
+		}*/
 
 
 		public Double getPrice() {

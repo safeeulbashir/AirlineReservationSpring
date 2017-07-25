@@ -1,41 +1,51 @@
 package DB.entity;
 
-import java.io.Serializable;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-import org.springframework.stereotype.Component;
-
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-@Component
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name="flight")
 public class Flight implements Serializable{
 	 	@Id
 	    @GeneratedValue(strategy = GenerationType.AUTO)
 	    private Integer flightId;
-	 	
-	    private Integer airlineId;
+	 	private Integer airlineId;
 	    private String airlineName;
 	    private String fromLocation;
 	    private String toLocation;
 	    private String departureTime;
-	    private String arrivalTime;
-	    private String Duration;
+		private String arrivalTime;
+	    private String duration;
 	    private Integer totalSeats;
-	    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL)
-	    @JsonManagedReference
-	    private List<FlightDetails> flightDetails;
-	    
-	    public Integer getAirlineId() {
+	@OneToMany(mappedBy = "flight", cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private Set<FlightDetails> flightDetails=new HashSet<FlightDetails>();
+
+	public Flight(Integer airlineId, String airlineName, String fromLocation, String toLocation, String departureTime, String arrivalTime, String duration, Integer totalSeats) {
+		this.airlineId = airlineId;
+		this.airlineName = airlineName;
+		this.fromLocation = fromLocation;
+		this.toLocation = toLocation;
+		this.departureTime = departureTime;
+		this.arrivalTime = arrivalTime;
+		this.duration = duration;
+		this.totalSeats = totalSeats;
+	}
+
+	public void setFlightDetails(Set<FlightDetails> flightDetails) {
+		this.flightDetails = flightDetails;
+	}
+
+
+	public Set<FlightDetails> getFlightDetails() {
+		return flightDetails;
+	}
+
+	public Integer getAirlineId() {
 	        return airlineId;
 	    }
 
@@ -92,11 +102,11 @@ public class Flight implements Serializable{
 	    }
 
 	    public String getDuration() {
-	        return Duration;
+	        return duration;
 	    }
 
 	    public void setDuration(String duration) {
-	        Duration = duration;
+	        duration = duration;
 	    }
 
 	    public Integer getTotalSeats() {
@@ -107,13 +117,6 @@ public class Flight implements Serializable{
 	        this.totalSeats = totalSeats;
 	    }
 
-		public List<FlightDetails> getFlightDetails() {
-			return flightDetails;
-		}
-
-		public void setFlightDetails(List<FlightDetails> flightDetails) {
-			this.flightDetails = flightDetails;
-		}
 
 	   
 }
