@@ -1,4 +1,5 @@
 language: java
 sudo: false
-script: cd airlinereservation
-mvn clean verify
+script: 
+- cd airlinereservation
+- mvn clean verify
