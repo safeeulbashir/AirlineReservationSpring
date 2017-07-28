@@ -23,7 +23,8 @@ public class TicketInfo implements Serializable {
     private String status;
 
     @ManyToOne
-    @JoinColumns({@JoinColumn(name = "flightDepartureDate"), @JoinColumn(name = "flightId")})
+    @JoinColumns({@JoinColumn(name = "flightDepartureDate"),
+            @JoinColumn(name = "flightId")})
     private FlightDetails flightDetails;
 
     public TicketInfo() {

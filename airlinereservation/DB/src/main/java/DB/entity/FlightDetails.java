@@ -1,27 +1,32 @@
 package DB.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Component
 @Table(name = "flightDetails", uniqueConstraints = {@UniqueConstraint(columnNames = {"flightId", "flightDepartureDate"})})
 public class FlightDetails implements Serializable {
+
     @Id
     @Column(name = "flightDepartureDate")
     private Date flightDepartureDate;
     private Double price;
     private Integer availableSeats;
-
+    @Id
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
     @JoinColumn(name = "flightId", nullable = false)
     private Flight flight;
-    /*@OneToMany(mappedBy = "flightDetails", cascade = CascadeType.ALL)
-	@JsonManagedReference
-	private List<TicketInfo> ticketInfo;*/
+    @OneToMany(mappedBy = "flightDetails", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<TicketInfo> ticketInfo;
 
 
     public FlightDetails(Date flightDepartureDate, Double price, Integer availableSeats, Flight flight) {
@@ -62,14 +67,14 @@ public class FlightDetails implements Serializable {
     }
 
 
-		/*public List<TicketInfo> getTicketInfo() {
-			return ticketInfo;
-		}
+    public List<TicketInfo> getTicketInfo() {
+        return ticketInfo;
+    }
 
 
-		public void setTicketInfo(List<TicketInfo> ticketInfo) {
-			this.ticketInfo = ticketInfo;
-		}*/
+    public void setTicketInfo(List<TicketInfo> ticketInfo) {
+        this.ticketInfo = ticketInfo;
+    }
 
     @Override
     public String toString() {
