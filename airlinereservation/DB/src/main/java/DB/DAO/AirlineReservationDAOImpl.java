@@ -40,10 +40,10 @@ public class AirlineReservationDAOImpl implements AirlineReservationDAO {
 
     @Override
     public Flight searchReservationByFlightId(Integer flightId) {
-        Session session=sessionFactory.openSession();
-        Query query= session.createQuery(String.format("from DB.entity.Flight where flightId=%d", flightId));
-        List list=query.list();
-        Flight flight= (Flight) list.get(0);
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery(String.format("from DB.entity.Flight where flightId=%d", flightId));
+        List list = query.list();
+        Flight flight = (Flight) list.get(0);
         System.out.print(flight.toString());
         return (Flight) list.get(0);
     }

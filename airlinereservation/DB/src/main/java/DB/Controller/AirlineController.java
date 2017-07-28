@@ -17,15 +17,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class AirlineController {
     @Autowired
     private AirlineDAOService airlineDAOService;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity userDetails() {
-      //  Flight flight=new Flight(1,"American Airlines","Chicago","Dallas","gfdgd","hgfhtf","rtf",100);
-        Flight flight=new Flight(1,"Ame","Ch","da","hjeg","hegs","hjdsg",100);
-        FlightDetails flightDetails=new FlightDetails(new java.sql.Date(System.currentTimeMillis()),123.789,100,flight);
+        //  Flight flight=new Flight(1,"American Airlines","Chicago","Dallas","gfdgd","hgfhtf","rtf",100);
+        Flight flight = new Flight(1, "Ame", "Ch", "da", "hjeg", "hegs", "hjdsg", 100);
+        FlightDetails flightDetails = new FlightDetails(new java.sql.Date(System.currentTimeMillis()), 123.789, 100, flight);
         flight.getFlightDetails().add(flightDetails);
         airlineDAOService.addFlightDetails(flight);
         airlineDAOService.searchReservationByFlightId(1);
-       return new ResponseEntity( HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
 

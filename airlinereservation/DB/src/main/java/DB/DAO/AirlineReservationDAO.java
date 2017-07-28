@@ -14,13 +14,20 @@ import java.sql.Date;
 
 public interface AirlineReservationDAO {
     void addFlightDetails(Flight flightDetails);
+
     Integer updateFlightDetails(FlightDetails flightDetails);
+
     Flight searchReservationByFlightId(Integer flightId);
 
     void createPassengerProfile(PassengerProfile passengerProfile);
+
     Integer updatePassengerProfile(PassengerProfile passengerProfile);
+
     Flight searchFlight(String fromLocation, String toLocation, Date date);
+
     TicketInfo searchReservation(Integer ticketId);
+
     String cancelReservation(Integer ticketId);
+
     Integer createReservation(TicketInfo ticketInfo);
 }
