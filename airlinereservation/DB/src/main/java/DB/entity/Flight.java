@@ -21,6 +21,11 @@ public class Flight implements Serializable{
 		private String arrivalTime;
 	    private String duration;
 	    private Integer totalSeats;
+
+	public Flight() {
+		super();
+	}
+
 	@OneToMany(mappedBy = "flight", cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private Set<FlightDetails> flightDetails=new HashSet<FlightDetails>();
@@ -117,6 +122,19 @@ public class Flight implements Serializable{
 	        this.totalSeats = totalSeats;
 	    }
 
-
-	   
+	@Override
+	public String toString() {
+		return "Flight{" +
+				"flightId=" + flightId +
+				", airlineId=" + airlineId +
+				", airlineName='" + airlineName + '\'' +
+				", fromLocation='" + fromLocation + '\'' +
+				", toLocation='" + toLocation + '\'' +
+				", departureTime='" + departureTime + '\'' +
+				", arrivalTime='" + arrivalTime + '\'' +
+				", duration='" + duration + '\'' +
+				", totalSeats=" + totalSeats +
+				", flightDetails=" + flightDetails +
+				'}';
+	}
 }

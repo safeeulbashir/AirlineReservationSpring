@@ -71,8 +71,16 @@ public class FlightDetails implements Serializable{
 			this.ticketInfo = ticketInfo;
 		}*/
 
+	@Override
+	public String toString() {
+		return "FlightDetails{" +
+				"flightDepartureDate=" + flightDepartureDate +
+				", price=" + price +
+				", availableSeats=" + availableSeats +
+				'}';
+	}
 
-		public Double getPrice() {
+	public Double getPrice() {
 	        return price;
 	    }
 

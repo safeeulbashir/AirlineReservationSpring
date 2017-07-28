@@ -19,16 +19,14 @@ public class AirlineController {
     private AirlineDAOService airlineDAOService;
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity userDetails() {
-        System.out.println("came");
       //  Flight flight=new Flight(1,"American Airlines","Chicago","Dallas","gfdgd","hgfhtf","rtf",100);
         Flight flight=new Flight(1,"Ame","Ch","da","hjeg","hegs","hjdsg",100);
         FlightDetails flightDetails=new FlightDetails(new java.sql.Date(System.currentTimeMillis()),123.789,100,flight);
-       System.out.println(flightDetails.toString());
-       flightDetails.setFlight(flight);
         flight.getFlightDetails().add(flightDetails);
-       System.out.println(new java.sql.Date(System.currentTimeMillis())+" gwergwurgwrg");
         airlineDAOService.addFlightDetails(flight);
+        airlineDAOService.searchReservationByFlightId(1);
        return new ResponseEntity( HttpStatus.OK);
     }
+
 
 }

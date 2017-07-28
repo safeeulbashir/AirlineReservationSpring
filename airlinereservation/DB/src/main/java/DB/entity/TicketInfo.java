@@ -12,25 +12,25 @@ import java.io.Serializable;
 public class TicketInfo implements Serializable{
 
 	@Id
-	 @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int ticketId;
-	
+
 	@ManyToOne
-    @JoinColumn(name="profileId")
-    @JsonBackReference
-    private PassengerProfile passengerProfile;
+	@JoinColumn(name="profileId")
+	@JsonBackReference
+	private PassengerProfile passengerProfile;
 
 	private String status;
-	
-	/*@ManyToOne
+
+	@ManyToOne
 	@JoinColumns({@JoinColumn(name="flightDepartureDate"),@JoinColumn(name="flightId")})
-	private FlightDetails flightDetails;*/
-	
+	private FlightDetails flightDetails;
+
 	public TicketInfo() {
 		super();
 	}
 
-	
+
 	public PassengerProfile getPassengerProfile() {
 		return passengerProfile;
 	}
@@ -41,7 +41,7 @@ public class TicketInfo implements Serializable{
 	}
 
 
-	/*public FlightDetails getFlightDetails() {
+	public FlightDetails getFlightDetails() {
 		return flightDetails;
 	}
 
@@ -49,7 +49,7 @@ public class TicketInfo implements Serializable{
 	public void setFlightDetails(FlightDetails flightDetails) {
 		this.flightDetails = flightDetails;
 	}
-*/
+
 
 	public int getTicketId() {
 		return ticketId;
@@ -66,5 +66,5 @@ public class TicketInfo implements Serializable{
 
 	public void setStatus(String status) {
 		this.status = status;
-	}	
+	}
 }

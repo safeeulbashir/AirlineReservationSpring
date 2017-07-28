@@ -16,4 +16,12 @@ AirlineReservationDAO airlineReservationDAO;
 
         airlineReservationDAO.addFlightDetails(flightDetails);
     }
+
+    public Flight searchReservationByFlightId(Integer flightId) {
+        Flight flight=airlineReservationDAO.searchReservationByFlightId(flightId);
+        return flight;
+
+    }
+
+
 }
