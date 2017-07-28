@@ -3,6 +3,7 @@ package DB.Controller;
 import DB.Service.AirlineDAOService;
 import DB.entity.Flight;
 import DB.entity.FlightDetails;
+import DB.entity.PassengerProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +21,13 @@ public class AirlineController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity userDetails() {
+        PassengerProfile passengerProfile= new PassengerProfile();
         //  Flight flight=new Flight(1,"American Airlines","Chicago","Dallas","gfdgd","hgfhtf","rtf",100);
         Flight flight = new Flight(1, "Ame", "Ch", "da", "hjeg", "hegs", "hjdsg", 100);
         FlightDetails flightDetails = new FlightDetails(new java.sql.Date(System.currentTimeMillis()), 123.789, 100, flight);
         flight.getFlightDetails().add(flightDetails);
         airlineDAOService.addFlightDetails(flight);
+        airlineDAOService.addPassengerProfile(passengerProfile);
         airlineDAOService.searchReservationByFlightId(1);
         return new ResponseEntity(HttpStatus.OK);
     }

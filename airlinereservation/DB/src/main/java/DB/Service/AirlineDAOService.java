@@ -2,6 +2,7 @@ package DB.Service;
 
 import DB.DAO.AirlineReservationDAO;
 import DB.entity.Flight;
+import DB.entity.PassengerProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,4 +25,6 @@ AirlineReservationDAO airlineReservationDAO;
     }
 
 
+    public void addPassengerProfile(PassengerProfile passengerProfile) {
+    }
 }
