@@ -39,6 +39,11 @@ public class AirlineReservationDAOImpl implements AirlineReservationDAO {
     }
 
     @Override
+    public void testFlightDetails(){
+        
+    }
+
+    @Override
     public Flight searchReservationByFlightId(Integer flightId) {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery(String.format("from DB.entity.Flight where flightId=%d", flightId));
