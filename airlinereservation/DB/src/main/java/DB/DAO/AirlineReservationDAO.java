@@ -15,6 +15,7 @@ import java.sql.Date;
 public interface AirlineReservationDAO {
     void addFlightDetails(Flight flightDetails);
 
+    void testFlightDetails();
     Integer updateFlightDetails(FlightDetails flightDetails);
 
     Flight searchReservationByFlightId(Integer flightId);
