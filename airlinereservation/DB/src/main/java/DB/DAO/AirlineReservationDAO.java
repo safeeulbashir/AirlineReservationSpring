@@ -17,7 +17,8 @@ public interface AirlineReservationDAO {
     //testing
     void testFlightDetails();
     Integer updateFlightDetails(FlightDetails flightDetails);
-
+    // new changes to maddy profile
+    // new changes to maddy1 profile
     Flight searchReservationByFlightId(Integer flightId);
 
     void createPassengerProfile(PassengerProfile passengerProfile);
